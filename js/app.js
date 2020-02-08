@@ -9,10 +9,10 @@ var seattle = {
     maxHourlyCustomers: 65,
     avgCookiesPerCustomer: 6.3,
     hourlyCustomerArray: [],
-    hourlyCookieArray:[],
-    function: setUpArrays(){
-        this.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
-        seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
+    hourlyCookieArray:[] 
+}
+    seattle.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
+    seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
     
     for (i=0; i< 15; i++) {
         seattle.hourlyCustomerArray[i] = seattle.hourlyCustomers;
@@ -22,9 +22,6 @@ var seattle = {
     for (i=0; i< 15; i++) {
         seattle.hourlyCookieArray[i] = Math.floor((seattle.avgCookiesPerCustomer * seattle.hourlyCustomerArray[i]));
     }
-    }
-}
-    
 var tokyo = {
     minHourlyCustomers: 3,
     maxHourlyCustomers: 24,
