@@ -1,7 +1,16 @@
-var hourlyTimeArray = ['7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM']
+
 function setHourlyCustomers(min, max){
     var answer =  Math.floor((Math.random())*(max-min))+min;
     return answer;
+function makeUL(array, array2) {
+    var list = document.createElement('ul');
+    for (var i = 0; i < array.length; i++) {
+        var item = document.createElement('li');
+        item.appendChild(document.createTextNode(array[i] + ' ' + array2[i] + ' cookies'));
+        list.appendChild(item);
+        }
+        return list;
+    }
 }
 
 var seattle = {
@@ -10,9 +19,10 @@ var seattle = {
     avgCookiesPerCustomer: 6.3,
     hourlyCustomerArray: [],
     hourlyCookieArray:[],
-    function: setUpArrays(){
-        this.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
-        seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
+    hourlyTimeArray: ['7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM']
+}
+    seattle.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
+    seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
     
     for (i=0; i< 15; i++) {
         seattle.hourlyCustomerArray[i] = seattle.hourlyCustomers;
@@ -22,9 +32,10 @@ var seattle = {
     for (i=0; i< 15; i++) {
         seattle.hourlyCookieArray[i] = Math.floor((seattle.avgCookiesPerCustomer * seattle.hourlyCustomerArray[i]));
     }
-    }
-}
-    
+    document.getElementById("seattle").appendChild(makeUL(seattle.hourlyTimeArray, seattle.hourlyCookieArray));
+
+
+
 var tokyo = {
     minHourlyCustomers: 3,
     maxHourlyCustomers: 24,
@@ -43,8 +54,6 @@ var tokyo = {
     for (i=0; i< 15; i++) {
         tokyo.hourlyCookieArray[i] = Math.floor((tokyo.avgCookiesPerCustomer * tokyo.hourlyCustomerArray[i]));
     }
-    console.log(tokyo.hourlyCookieArray);
-    console.log(tokyo.hourlyCustomerArray);
 var dubai  = {
     minHourlyCustomers: 11,
     maxHourlyCustomers: 38,
