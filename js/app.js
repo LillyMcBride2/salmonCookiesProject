@@ -1,17 +1,17 @@
-
+var hourlyTimeArray = ['7AM:', '8AM:', '9AM:', '10AM:', '11AM:', 'NOON:', '1PM:', '2PM:', '3PM:', '4PM:', '5PM:', '6PM:', '7PM:', '8PM:', '9PM:']
 function setHourlyCustomers(min, max){
     var answer =  Math.floor((Math.random())*(max-min))+min;
     return answer;
-function makeUL(array, array2) {
+}
+function makeUL(array) {
     var list = document.createElement('ul');
-    for (var i = 0; i < array.length; i++) {
+    for (var i = 0; i < hourlyTimeArray.length; i++) {
         var item = document.createElement('li');
-        item.appendChild(document.createTextNode(array[i] + ' ' + array2[i] + ' cookies'));
+        item.appendChild(document.createTextNode(hourlyTimeArray[i] + ' ' + array[i] + ' cookies'));
         list.appendChild(item);
         }
         return list;
     }
-}
 
 var seattle = {
     minHourlyCustomers: 23,
@@ -19,20 +19,20 @@ var seattle = {
     avgCookiesPerCustomer: 6.3,
     hourlyCustomerArray: [],
     hourlyCookieArray:[],
-    hourlyTimeArray: ['7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM']
-}
-    seattle.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
-    seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
+    setHourlyCustomerArray: function () {
+        var hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
     
-    for (i=0; i< 15; i++) {
-        seattle.hourlyCustomerArray[i] = seattle.hourlyCustomers;
-        seattle.hourlyCustomers = setHourlyCustomers(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
-        seattle.hourlyCustomers = Math.floor(seattle.hourlyCustomers);
+        for (i=0; i< 15; i++) {
+            this.hourlyCustomerArray[i] = hourlyCustomers;
+            hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+        }
+        for (i=0; i< 15; i++) {
+            this.hourlyCookieArray[i] = Math.floor((this.avgCookiesPerCustomer * this.hourlyCustomerArray[i]));
+        }
     }
-    for (i=0; i< 15; i++) {
-        seattle.hourlyCookieArray[i] = Math.floor((seattle.avgCookiesPerCustomer * seattle.hourlyCustomerArray[i]));
-    }
-    document.getElementById("seattle").appendChild(makeUL(seattle.hourlyTimeArray, seattle.hourlyCookieArray));
+}
+    seattle.setHourlyCustomerArray();
+    document.getElementById("seattle").appendChild(makeUL(seattle.hourlyCookieArray));
 
 
 
@@ -41,73 +41,83 @@ var tokyo = {
     maxHourlyCustomers: 24,
     avgCookiesPerCustomer: 1.2,
     hourlyCustomerArray: [],
-    hourlyCookieArray: []
+    hourlyCookieArray: [],
+    setHourlyCustomerArray: function () {
+        var hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+    
+        for (i=0; i< 15; i++) {
+            this.hourlyCustomerArray[i] = hourlyCustomers;
+            hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+        }
+        for (i=0; i< 15; i++) {
+            this.hourlyCookieArray[i] = Math.floor((this.avgCookiesPerCustomer * this.hourlyCustomerArray[i]));
+        }
+    }
 }
-    tokyo.hourlyCustomers = setHourlyCustomers(tokyo.minHourlyCustomers, tokyo.maxHourlyCustomers);
-    tokyo.hourlyCustomers = Math.floor(tokyo.hourlyCustomers);
-
-    for (i=0; i< 15; i++) {
-        tokyo.hourlyCustomerArray[i] = tokyo.hourlyCustomers;
-        tokyo.hourlyCustomers = setHourlyCustomers(tokyo.minHourlyCustomers, tokyo.maxHourlyCustomers);
-        tokyo.hourlyCustomers = Math.floor(tokyo.hourlyCustomers);
-    }
-    for (i=0; i< 15; i++) {
-        tokyo.hourlyCookieArray[i] = Math.floor((tokyo.avgCookiesPerCustomer * tokyo.hourlyCustomerArray[i]));
-    }
+tokyo.setHourlyCustomerArray();
+document.getElementById("tokyo").appendChild(makeUL(tokyo.hourlyCookieArray));
+  
 var dubai  = {
     minHourlyCustomers: 11,
     maxHourlyCustomers: 38,
     avgCookiesPerCustomer: 3.7,
     hourlyCustomerArray: [],
-    hourlyCookieArray: []
+    hourlyCookieArray: [],
+    setHourlyCustomerArray: function () {
+        var hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+    
+        for (i=0; i< 15; i++) {
+            this.hourlyCustomerArray[i] = hourlyCustomers;
+            hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+        }
+        for (i=0; i< 15; i++) {
+            this.hourlyCookieArray[i] = Math.floor((this.avgCookiesPerCustomer * this.hourlyCustomerArray[i]));
+        }
     }
-    dubai.hourlyCustomers = setHourlyCustomers(dubai.minHourlyCustomers, dubai.maxHourlyCustomers);
-    dubai.hourlyCustomers = Math.floor(dubai.hourlyCustomers);
+}
+dubai.setHourlyCustomerArray();
+document.getElementById("dubai").appendChild(makeUL(dubai.hourlyCookieArray));
 
-    for (i=0; i< 15; i++) {
-        dubai.hourlyCustomerArray[i] = dubai.hourlyCustomers;
-        dubai.hourlyCustomers = setHourlyCustomers(dubai.minHourlyCustomers, dubai.maxHourlyCustomers);
-        dubai.hourlyCustomers = Math.floor(dubai.hourlyCustomers);
-    }
-    for (i=0; i< 15; i++) {
-        dubai.hourlyCookieArray[i] = Math.floor((dubai.avgCookiesPerCustomer * dubai.hourlyCustomerArray[i]));
-    } 
 var paris = {
     minHourlyCustomers: 20,
     maxHourlyCustomers: 38,
     avgCookiesPerCustomer: 2.3,
     hourlyCustomerArray: [],
-    hourlyCookieArray: []
+    hourlyCookieArray: [],
+    setHourlyCustomerArray: function () {
+        var hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+    
+        for (i=0; i< 15; i++) {
+            this.hourlyCustomerArray[i] = hourlyCustomers;
+            hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+        }
+        for (i=0; i< 15; i++) {
+            this.hourlyCookieArray[i] = Math.floor((this.avgCookiesPerCustomer * this.hourlyCustomerArray[i]));
+        }
     }
-    paris.hourlyCustomers = setHourlyCustomers(paris.minHourlyCustomers, paris.maxHourlyCustomers);
-    paris.hourlyCustomers = Math.floor(paris.hourlyCustomers);
+}
+paris.setHourlyCustomerArray();
+document.getElementById("paris").appendChild(makeUL(paris.hourlyCookieArray));
 
-    for (i=0; i< 15; i++) {
-        paris.hourlyCustomerArray[i] = paris.hourlyCustomers;
-        paris.hourlyCustomers = setHourlyCustomers(paris.minHourlyCustomers, paris.maxHourlyCustomers);
-        paris.hourlyCustomers = Math.floor(paris.hourlyCustomers);
-    }
-    for (i=0; i< 15; i++) {
-        paris.hourlyCookieArray[i] = Math.floor((paris.avgCookiesPerCustomer * paris.hourlyCustomerArray[i]));
-    }
     var lima = {
     minHourlyCustomers: 2,
     maxHourlyCustomers: 16,
     avgCookiesPerCustomer: 4.6,
     hourlyCustomerArray: [],
-    hourlyCookieArray: []
+    hourlyCookieArray: [],
+    setHourlyCustomerArray: function () {
+        var hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+    
+        for (i=0; i< 15; i++) {
+            this.hourlyCustomerArray[i] = hourlyCustomers;
+            hourlyCustomers = Math.floor(setHourlyCustomers(this.minHourlyCustomers, this.maxHourlyCustomers));
+        }
+        for (i=0; i< 15; i++) {
+            this.hourlyCookieArray[i] = Math.floor((this.avgCookiesPerCustomer * this.hourlyCustomerArray[i]));
+        }
     }
-    lima.hourlyCustomers = setHourlyCustomers(lima.minHourlyCustomers, lima.maxHourlyCustomers);
-    lima.hourlyCustomers = Math.floor(lima.hourlyCustomers);
-
-    for (i=0; i< 15; i++) {
-        lima.hourlyCustomerArray[i] = lima.hourlyCustomers;
-        lima.hourlyCustomers = setHourlyCustomers(lima.minHourlyCustomers, lima.maxHourlyCustomers);
-        lima.hourlyCustomers = Math.floor(lima.hourlyCustomers);
-    }
-    for (i=0; i< 15; i++) {
-        lima.hourlyCookieArray[i] = Math.floor((lima.avgCookiesPerCustomer * lima.hourlyCustomerArray[i]));
-    }
-
+}
+lima.setHourlyCustomerArray();
+document.getElementById("lima").appendChild(makeUL(lima.hourlyCookieArray));
 
 
