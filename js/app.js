@@ -22,6 +22,7 @@ var seattle = {
     for (i=0; i< 15; i++) {
         seattle.hourlyCookieArray[i] = Math.floor((seattle.avgCookiesPerCustomer * seattle.hourlyCustomerArray[i]));
     }
+    var = document.createElement('li')
 var tokyo = {
     minHourlyCustomers: 3,
     maxHourlyCustomers: 24,
