@@ -37,8 +37,8 @@ function Location(name, min, max, avg){
             var shops = document.createElement('td')
             var cookieSales = [];
             shops.textContent = this.shopName;
-            list.appendChild(shops);
             tableBody.appendChild(list);
+            list.appendChild(shops);
                 for (var i = 0; i < hourlyTimeArray.length; i++){
                 var data = document.createElement('td')
                 data.textContent = this.hourlyCookieArray[i];
@@ -51,9 +51,18 @@ function Location(name, min, max, avg){
             storeData.textContent = this.totalCookies;
             table.appendChild(tableBody);
             tableBody.appendChild(list);
+            list.appendChild(storeData);
         }
 
     var storeTable = document.getElementById('table');
+
+    function sumArray(array) {
+        var total;
+        for (var i =0; i<array.length; i++) {
+            total += [i];
+        }
+            return total;
+    }
 
     //Syntax borrowed from another student's repository
     function createHeaderRow(){
