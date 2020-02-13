@@ -1,7 +1,7 @@
 'use strict';
 var hourlyTimeArray = ['7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM'];
 var shopNames = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima']
-var cookieTotal= 0;
+var cookieTotal= [];
 
 function Location(name, min, max, avg){
     this.shopName = name;
@@ -42,20 +42,19 @@ function Location(name, min, max, avg){
                 for (var i = 0; i < hourlyTimeArray.length; i++){
                 var data = document.createElement('td')
                 data.textContent = this.hourlyCookieArray[i];
-                list.appendChild(data);
-                tableBody.appendChild(list);
+                
                 cookieSales[i] = this.hourlyCookieArray[i];
                 }
            
-            }
+            
             cookieSales.push(this.totalCookies);
             cookieTotal.push(cookieSales);
             var storeData = document.createElement('td');
             storeData.textContent = this.totalCookies;
-        // storeRow.appendChild(storeData);
-        // storeBody.appendChild(storeRow);
-        // storeTable.appendChild(storeBody);
-    
+            table.appendChild(tableBody);
+            list.appendChild(data);
+            tableBody.appendChild(list);
+        }
 
     var storeTable = document.getElementById('table');
 
@@ -79,7 +78,7 @@ function Location(name, min, max, avg){
         }
 
 createHeaderRow();
-renderTable(shopNames);
+
 
 
 function setHourlyCustomers (min, max){
@@ -87,11 +86,12 @@ function setHourlyCustomers (min, max){
     return answer;
 }
 
- var seattle = new Location(23, 65, 6.3);
+ var seattle = new Location('Seattle',23, 65, 6.3);
 
  seattle.setHourlyCustomerArray(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
  seattle.setHourlyCookieArray(); 
  seattle.setTotalCookies();
+ seattle.render();
  
 //  var tokyo = new Location(3, 24, 1.2);
 
