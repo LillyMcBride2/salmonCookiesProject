@@ -1,7 +1,7 @@
 'use strict';
 var hourlyTimeArray = ['7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM'];
-var shopNames = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima']
 var cookieTotal= [];
+var locations =[];
 
 function Location(name, min, max, avg){
     this.shopName = name;
@@ -85,11 +85,32 @@ function Location(name, min, max, avg){
 
     function createFooterRow() {
 
+        var footer = document.createElement('tfoot');
+        var footerRow = document.createElement('tr');
+        var footerData = document.createElement('td');
+        footerData.textContent = 'Totals';
+        footerRow.appendChild(footerData);
+        var totalSales = 0;
+         for (var i = 0; i < hourlyTimeArray.length; i++){
+               var hourlyData = document.createElement('td');
+               var hourlyTotal = 0;
+               console.log(locations);
+               for (var j = 0; j< locations.length; j++) {
+                   hourlyTotal += locations[j].hourlyCookieArray[i];
+               }
+               totalSales += hourlyTotal;
+               hourlyData.textContent = hourlyTotal;
+               footerRow.appendChild(hourlyData);
+           }
+         var finalSales = document.createElement('td');
+         finalSales.textContent = totalSales;
+         footerRow.appendChild(finalSales);
+         footer.appendChild(footerRow);
+         storeTable.appendChild(footer);
+    
     }
 
 createHeaderRow();
-createFooterRow();
-
 
 
 function setHourlyCustomers (min, max){
@@ -103,6 +124,7 @@ function setHourlyCustomers (min, max){
  seattle.setHourlyCookieArray(); 
  seattle.setTotalCookies();
  seattle.render();
+ locations.push(seattle);
  
  var tokyo = new Location('Tokyo', 3, 24, 1.2);
 
@@ -110,6 +132,7 @@ function setHourlyCustomers (min, max){
  tokyo.setHourlyCookieArray();   
  tokyo.setTotalCookies();
  tokyo.render();
+ locations.push(tokyo);
 
  var dubai = new Location('Dubai', 11, 38, 3.7);
   
@@ -117,6 +140,7 @@ function setHourlyCustomers (min, max){
  dubai.setHourlyCookieArray();   
  dubai.setTotalCookies();
  dubai.render();
+ locations.push(dubai);
 
  var paris = new Location('Paris', 20, 38, 2.3);
 
@@ -124,6 +148,7 @@ function setHourlyCustomers (min, max){
  paris.setHourlyCookieArray();   
  paris.setTotalCookies();
  paris.render();
+ locations.push(paris);
 
  var lima = new Location('Lima', 2, 16, 4.6);
 
@@ -131,4 +156,6 @@ function setHourlyCustomers (min, max){
  lima.setHourlyCookieArray();   
  lima.setTotalCookies();
  lima.render();
+ locations.push(lima);
 
+ createFooterRow();
