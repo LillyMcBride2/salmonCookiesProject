@@ -94,7 +94,6 @@ function Location(name, min, max, avg){
          for (var i = 0; i < hourlyTimeArray.length; i++){
                var hourlyData = document.createElement('td');
                var hourlyTotal = 0;
-               console.log(locations);
                for (var j = 0; j< locations.length; j++) {
                    hourlyTotal += locations[j].hourlyCookieArray[i];
                }
@@ -120,7 +119,7 @@ function setHourlyCustomers (min, max){
 
  var seattle = new Location('Seattle',23, 65, 6.3);
 
- seattle.setHourlyCustomerArray(seattle.minHourlyCustomers, seattle.maxHourlyCustomers);
+ seattle.setHourlyCustomerArray();
  seattle.setHourlyCookieArray(); 
  seattle.setTotalCookies();
  seattle.render();
@@ -128,7 +127,7 @@ function setHourlyCustomers (min, max){
  
  var tokyo = new Location('Tokyo', 3, 24, 1.2);
 
- tokyo.setHourlyCustomerArray(tokyo.minHourlyCustomers, tokyo.maxHourlyCustomers);
+ tokyo.setHourlyCustomerArray();
  tokyo.setHourlyCookieArray();   
  tokyo.setTotalCookies();
  tokyo.render();
@@ -136,7 +135,7 @@ function setHourlyCustomers (min, max){
 
  var dubai = new Location('Dubai', 11, 38, 3.7);
   
- dubai.setHourlyCustomerArray(dubai.minHourlyCustomers, dubai.maxHourlyCustomers);
+ dubai.setHourlyCustomerArray();
  dubai.setHourlyCookieArray();   
  dubai.setTotalCookies();
  dubai.render();
@@ -144,7 +143,7 @@ function setHourlyCustomers (min, max){
 
  var paris = new Location('Paris', 20, 38, 2.3);
 
- paris.setHourlyCustomerArray(paris.minHourlyCustomers, paris.maxHourlyCustomers);
+ paris.setHourlyCustomerArray();
  paris.setHourlyCookieArray();   
  paris.setTotalCookies();
  paris.render();
@@ -152,10 +151,33 @@ function setHourlyCustomers (min, max){
 
  var lima = new Location('Lima', 2, 16, 4.6);
 
- lima.setHourlyCustomerArray(lima.minHourlyCustomers, lima.maxHourlyCustomers);
+ lima.setHourlyCustomerArray();
  lima.setHourlyCookieArray();   
  lima.setTotalCookies();
  lima.render();
  locations.push(lima);
 
  createFooterRow();
+
+function handleFormSubmitted(event) {
+     event.preventDefault();
+     var shopInput = document.getElementById('shopLocation');
+     var shopValue = shopInput.value;
+     var minInput = document.getElementById('minimumCookieSales');
+     var minValue = minInput.value;
+     var maxInput = document.getElementById('maximumCookieSales');
+     var maxValue = maxInput.value;
+     var avgInput = document.getElementById('averageCookieSales');
+     var avgValue = avgInput.value;
+     var newShop = new Location(shopValue, parseInt(minValue, 10), parseInt(maxValue, 10), parseFloat(avgValue));
+     newShop.setHourlyCustomerArray();
+     newShop.setHourlyCookieArray();
+     newShop.setTotalCookies();
+     newShop.render();
+     var form = document.getElementById("new-location");
+     form.reset();
+   }
+  
+   var formElement = document.getElementById('new-location');
+
+   formElement.addEventListener('submit', handleFormSubmitted);
