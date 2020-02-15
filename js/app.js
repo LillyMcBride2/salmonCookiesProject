@@ -85,6 +85,7 @@ function Location(name, min, max, avg){
 
     function createFooterRow() {
 
+        document.getElementById("table").deleteTFoot();
         var footer = document.createElement('tfoot');
         var footerRow = document.createElement('tr');
         var footerData = document.createElement('td');
@@ -157,8 +158,6 @@ function setHourlyCustomers (min, max){
  lima.render();
  locations.push(lima);
 
- createFooterRow();
-
 function handleFormSubmitted(event) {
      event.preventDefault();
      var shopInput = document.getElementById('shopLocation');
@@ -174,6 +173,7 @@ function handleFormSubmitted(event) {
      newShop.setHourlyCookieArray();
      newShop.setTotalCookies();
      newShop.render();
+     locations.push(newShop);
      var form = document.getElementById("new-location");
      form.reset();
    }
@@ -181,3 +181,5 @@ function handleFormSubmitted(event) {
    var formElement = document.getElementById('new-location');
 
    formElement.addEventListener('submit', handleFormSubmitted);
+
+   createFooterRow();
