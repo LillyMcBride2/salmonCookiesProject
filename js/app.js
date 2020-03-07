@@ -175,6 +175,7 @@ function handleFormSubmitted(event) {
      newShop.render();
      locations.push(newShop);
      var form = document.getElementById("new-location");
+     createFooterRow();
      form.reset();
    }
   
