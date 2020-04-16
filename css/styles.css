@@ -1,0 +1,46 @@
+h1 {
+    text-align: center;
+    color: maroon;
+    background-color: antiquewhite;
+    font-family: 'Ubuntu', sans-serif;
+}
+h2 {
+    font-family: 'Ubuntu', sans-serif;
+    color: maroon;
+}
+body {
+    background-color: azure;
+}
+.salesInfo {
+    text-align: center;
+}
+main {
+    text-align: center;
+}
+#stores {
+    font-family: Verdana;
+    color: magenta;
+    background: antiquewhite;
+}
+#description {
+float: right;
+font-size: 25px;
+color: salmon;
+background-color: white;
+}
+.salmon {
+    float: right;
+    width: 33%;
+}
+#images {
+    float: right;
+}
+.family {
+    height: 600px;
+}
+.text {
+    float: left;
+    background-color: antiquewhite;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: mediumpurple;
+}
